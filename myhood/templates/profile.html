@@ -1,0 +1,12 @@
+
+{%extends 'layout.html'%}
+{% block content%}
+
+{% for i in person %}
+<p>{{user}}</p>
+<p>{{i.bio}}</p>
+<p>{{i.location}}</p>
+<img src="{{i.pic.cdn_url}}" alt="profile">
+{% endfor%}
+{{messages}}
+{% endblock%}
