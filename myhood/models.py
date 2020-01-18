@@ -20,7 +20,7 @@ class Profile(models.Model):
     '''
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     email = models.EmailField()
-    location = models.CharField(max_length=200)
+    location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
     bio = models.CharField(max_length=500)
     pic = ImageField(blank=True,manual_crop="")
     
@@ -36,8 +36,9 @@ class Business(models.Model):
     class that creates instance of a new business
     '''
     bs_name = models.CharField(max_length=300)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    locality = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
+    about = models.TextField(max_length=400,blank=True,default=None)
+    owner=models.ForeignKey(User,on_delete=models.CASCADE)
+    hood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
     bs_email = models.EmailField()
     
     def __str__(self):
@@ -45,7 +46,7 @@ class Business(models.Model):
     
     @classmethod
     def search_business(cls,search_term):
-        business = cls.objects.filter
+        business = cls.objects.filter(bs_name__icontains=search_term)
     
     
     
@@ -56,7 +57,7 @@ class Posts(models.Model):
     title = models.CharField(max_length=50)
     image = ImageField(blank=True,manual_crop='')
     description = models.TextField()
-    posted_by = models.ForeignKey(User,on_delete=models.CASCADE)
+    posted_by = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
     where = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
 
 
@@ -69,6 +70,9 @@ class Posts(models.Model):
     def delete_post(self):
         post = Post.objects.all().delete()
         return post
+    
+    def search_post(cls,search_term):
+        post = cls.objects.filter(title__icontains=search_term)
     
     
 

@@ -12,5 +12,13 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user']
         
+class NewPostForm(forms.ModelForm):
+    '''
+    Class that define how the new post form will look like
+    '''
+    class Meta:
+        model = Posts
+        exclude = ['posted_by']
+        
 
         

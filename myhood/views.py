@@ -46,3 +46,22 @@ def update_profile(request):
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
     return render(request, 'edit_profile.html', {'profile_form': profile_form})
+
+@login_required
+def add_post(request):
+    '''
+    View function that renders the add post form
+    '''
+    if request.method == 'POST':
+        post_form = NewPostForm(request.POST,request.FILES)
+        
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.posted_by =request.user
+            post_form.save()
+            return redirect('profile')
+        
+    else:
+        post_form = NewPostForm()
+    return render(request,'new_post.html',{'post_form':post_form})
+

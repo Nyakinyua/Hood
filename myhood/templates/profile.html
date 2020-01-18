@@ -50,11 +50,11 @@
 
             <div class="row">
                 <div class="col-md-2"></div>
-                {%if profile%}
-                {%for photo in profile%}
+                {%if post%}
+                {%for item in post %}
                 <div class="col-md-8">
                     <div class="image">
-                        <a href=""><img class="img-fluid" src="{{photo.image.url}}"
+                        <a href=""><img class="img-fluid" src="{{item.image.cdn_url}}"
                                 alt=""></a>
                     </div>
                 
@@ -63,7 +63,7 @@
                 {%else%}
                 <div class="alert">
                     <p class="animated fadeIn alert alert-danger">You have not posted anything in the Neighborhood <br>
-                        <a href="">Get started</a></p>
+                        <a href="{% url 'post'%}">Get started</a></p>
 
                 </div>
                 {%endif%}

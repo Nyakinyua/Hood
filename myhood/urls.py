@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^logout/$',views.logout_user,name='logout'),
     path('profile/',views.profile,name='profile'),
     path('edit/',views.update_profile,name="edit"),
+    path('post/',views.add_post,name="post"),
 ]
