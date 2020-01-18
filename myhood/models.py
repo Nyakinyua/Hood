@@ -26,7 +26,10 @@ class Profile(models.Model):
     
     
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return self.user.username
+    
+    def save_profile(self):
+        return self.save()
     
 class Business(models.Model):
     '''
@@ -40,6 +43,10 @@ class Business(models.Model):
     def __str__(self):
         return self.bs_name
     
+    @classmethod
+    def search_business(cls,search_term):
+        business = cls.objects.filter
+    
     
     
 class Posts(models.Model):
@@ -49,11 +56,19 @@ class Posts(models.Model):
     title = models.CharField(max_length=50)
     image = ImageField(blank=True,manual_crop='')
     description = models.TextField()
+    posted_by = models.ForeignKey(User,on_delete=models.CASCADE)
     where = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
 
 
     def __str__(self):
         return self.title
+    
+    def save_post(self):
+        return self.save()
+    
+    def delete_post(self):
+        post = Post.objects.all().delete()
+        return post
     
     
 

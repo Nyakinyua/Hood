@@ -1,12 +1,79 @@
-
 {%extends 'layout.html'%}
+{% load bootstrap4%}
+{%load static%}
 {% block content%}
 
-{% for i in person %}
-<p>{{user}}</p>
-<p>{{i.bio}}</p>
-<p>{{i.location}}</p>
-<img src="{{i.pic.cdn_url}}" alt="profile">
-{% endfor%}
-{{messages}}
+
+
+
+<div class="container prof" style="margin-bottom: 4em;">
+    <br><br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4" style="margin-bottom: 4em;">
+                    {%for i in person%}
+                    <img class="img-fluid" src="{{i.pic.cdn_url}}" alt="profile" style=" border-radius: 50%;">
+                    {%endfor%}
+                </div>
+                <div class="col-md-8">
+                    <div class=" idea">
+
+                         <a href="{%url 'edit'%}"> <button type="button" class="btn btn-light">Edit
+                                Profile</button><a id="prompt" >
+                            <i class="fas fa-cog fa-spin"></i></a>
+
+                    </div>
+
+                    {%for i in person%}
+                    <strong>User:{{user|upper}}</strong>
+                    <p><strong>BIO:</strong>{{i.bio}}</p>
+                    <p><strong>Location:</strong>{{i.location}}</p>
+                    {%endfor%}
+                </div>
+
+            </div>
+            <br>
+            <hr class="info">
+            <div class="tags">
+                <a href="#"><i class="far fa-newspaper"></i> Posts</a><a href="#"><i class="far fa-newspaper"></i>
+                    Saved</a>
+            </div>
+        </div>
+        <div class="col-md-1"> </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8"></div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                {%if profile%}
+                {%for photo in profile%}
+                <div class="col-md-8">
+                    <div class="image">
+                        <a href=""><img class="img-fluid" src="{{photo.image.url}}"
+                                alt=""></a>
+                    </div>
+                
+
+                {%endfor%}
+                {%else%}
+                <div class="alert">
+                    <p class="animated fadeIn alert alert-danger">You have not posted anything in the Neighborhood <br>
+                        <a href="">Get started</a></p>
+
+                </div>
+                {%endif%}
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        
+
+    </div>
+</div>
+
 {% endblock%}
