@@ -67,18 +67,16 @@ def add_post(request):
     return render(request, 'new_post.html', {'post_form': post_form})
 
 
-@login_required
+@login_required(login_url='/accounts/login/')  
 def search_results(request):
-    '''
-    view function that renders to search html and gives search results for items found
-    '''
     if 'business' in request.GET and request.GET['business']:
-        term = request.GET.get('business')
+        search_term = request.GET.get('business')
         results = Business.search_business(search_term)
-        message = f'{search_term}'
+        message = f'{search_term} search'
+
         return render(request, 'search.html', {'message': message, 'results': results, 'search_term': search_term})
     else:
-        message = "You did not search any Business, please input business name"
+        message = "You did not search any Project, please input project name"
         return render(request, 'search.html', {'message': message})
 
 @login_required
@@ -97,3 +95,17 @@ def new_business(request):
         title='New Business'
         form = NewBizForm()
         return render(request,'new_biz.html',{'form':form,'title':title})
+    
+@login_required
+def view_business(request):
+    """
+    View function that renders the businesses available in the neighbohood
+    """
+    user = Profile.objects.get(user=request.user.id)
+    busness = Business.objects.all()
+    return render(request,'business.html',{'business':busness})
+
+@login_required
+def departments(request):
+    dept = Departments.get_dept(request.user.profile.location)
+    return render(request,'hoods.html',{'dept':dept})

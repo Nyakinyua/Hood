@@ -13,9 +13,11 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-4">
-                    {%for i in profile%}
-                    <img class="img-fluid rounded-circle" src="{{i.pic.cdn_url}}" alt="profile">
-                    {%endfor%}
+                    {%if user.profile.pic%}
+                    <img class="img-fluid rounded-circle" src="{{user.profile.pic}}" alt="profile">
+                    {%else%}
+                    <img class="img-fluid rounded-circle" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtrWO5G0c78-iqIqianNXbrCpd0tMvC6SToxg3XjIuz4j_KPlp&s'>
+                {%endif%}
                 </div>
                 <div class="col-md-8">
                     <div class=" idea">

@@ -1,0 +1,38 @@
+{%extends 'layout.html'%}
+{%load bootstrap4%}
+{% load static%}
+{%block content%}
+
+<div class="container" style="padding-top:2em">
+    {%if business%}
+    <h3 class="text-center">{{business|length}}  Businesses available </h3>
+      <div class="row">
+          
+          {% for business in business%}
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-title">
+                  <h3 class="text-center">{{business.bs_name}}</h3>
+              </div>
+              <img class="img-fluid"src="{{business.b_pic.cdn_url}}" alt="biz">
+                  <div class="card-body">
+                <p>Owned by: <span class="text-success">{{business.owner}}</span></p>
+                <p><span class="text-primary">Description:</span> <br>{{business.about}}</p>
+  
+              </div>
+              <div class="card-footer">
+                <p>Business Email: {{business.bs_email}} </p>
+              </div>
+            </div>
+    
+          </div>
+          {% endfor%}
+          <h4>Add another business <span><a href="{% url 'new_biz'%} ">here</a></span></h4>
+      
+          {%else%}
+            <h3>There are no businesses yet.</h3>
+            <h4>Add a business <span><a href="{% url 'new_biz'%} ">here</a></span></h4>
+          </div>
+        </div>
+        {% endif %}
+{%endblock%}

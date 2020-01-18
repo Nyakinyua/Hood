@@ -62,10 +62,6 @@ class Profile(models.Model):
     contact = models.CharField(max_length=10,blank=True)
     location = models.CharField(max_length=50,default=None,blank=True,null=True)
     
-    
-    
-    
-    
     def __str__(self):
         return self.user.username
     
@@ -93,6 +89,7 @@ class Business(models.Model):
     @classmethod
     def search_business(cls,search_term):
         business = cls.objects.filter(bs_name__icontains=search_term)
+        return business
     
     @classmethod
     def get_businesses(cls,hood):

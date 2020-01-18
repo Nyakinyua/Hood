@@ -1,55 +1,37 @@
 {%extends 'layout.html'%}
-{%load static%}
-{load bootstrap4}
-{{block.supper}}
-{%block content%}
+{% load static %}
+{% load bootstrap4 %}
 
+{% block content %}
+<div class="container" style="padding-top: 5em;">
+  {% if results %}  
+    <p class="alert alert-success alert-dismissible fade show" role="alert">Found {{results|length}} stuff related to {{message}}</p>
+  {% else %}
+    <p class="alert alert-warning alert-dismissible fade show" role="alert">Found 0 stuff related to {{message}}</p>
+  {% endif %}
 
-
-   <div  class="container"style="padding-top:5em">
-     <div class="row">
-        
-       <div class="col-md-7 contain">
-         {%if results%}
-          <p>Marched {{results|length}} related  Businesses</p>
-          {%else%}
-          <p class="alert alert-danger animated fadeIn">Either {{search_term}} Has  no Businesses !</p>
-          {%endif%}
-         <div class="card">
-           {%for user in results %}
-           <div class="card-title">
-            <p><strong>{{user.bs_name}}'s </strong>Posts</div>
-            <div class ="card-body">
-                <p>{{user.about}}</p>
-           
-            </div>
-            <p>{{user.owner}}</p>
-            <p>{{user.hood}}</p>
-            <p>{{user.bs_email}}</p>
-           {%endfor%}
-         </div>
-       </div>
-       <div class="col-md-5 ">
-         <div class="contain">
-
-
-          <div class="open">
-            <ul class="list-group">
-              <li class="list-group-item">Dint find any results? <a href="{%url 'home'%}">Go back Home</a></li>
- 
-            </ul>
- 
-          </div>
-
-
-
-
-       </div>
-
-
-
-
-       </div>
-
-     </div>
-    {% endblock %}
+  {% if results %}
+  <h1 class="text-center">Available Businesses</h1>
+  {% endif %}
+  <div class="row">
+    <div class="card-columns">
+    {% for bizna in results %}
+      <div class="card">
+        <div class="card-header">
+          <div>{% if bizna.owner.profile.pic %}<img src="{{bizna.owner.profile.pic}}" class="rounded-circle" width="40px" height="40px" alt="profile_pic">{% endif %} {{bizna.owner}}</div>
+        </div>
+        <div class="card-body">
+          <h4>{{bizna.name}}</h4>
+          {% if bizna.b_pic %}
+          <img src="{{bizna.b_pic}}" width="250px" height="200px"alt='logo'>
+          {% endif %}
+          <h6>About: {{bizna.about}}</h6>                
+          <h6>Location: {{bizna.hood}}</h6>
+          <div>Contact: <small>{{bizna.bs_email}}</small></div>        
+        </div>        
+      </div>
+    {% endfor %}        
+    </div>
+  </div>
+</div>
+{% endblock content %}

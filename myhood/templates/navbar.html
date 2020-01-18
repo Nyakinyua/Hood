@@ -51,42 +51,39 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link waves-effect" href="{% url 'home'%}">Home
-              <span class="sr-only"></span>
+              <i class="fas fa-home"></i>
             </a>
           </li>
           
         </ul>
-
-        <form class="form-inline ml-auto" action="{% url 'search'%}"role="search" class="form-inline  my-2 my-lg-0">
-          <input type="text" class="form-control mr-sm-2" placeholder="Search">
-          <input type="submit" class="btn btn-outline-info"></input>
-        </form>
-
-
-
-
-        <!-- Right -->
+<!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
-            <a class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> 1 </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            <a class="nav-link waves-effect" href="{url 'post'}">
+              
+              <i class="fas fa-plus-square"></i>Post
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="{% url 'profile'%}" class="nav-link waves-effect" target="_blank">
+              <i class="fas fa-user"></i>Profile
             </a>
           </li>
           <li class="nav-item">
             <a href="{% url 'logout'%}" class="nav-link waves-effect" target="_blank">
-              <i class="fas fa-sign-out"></i>Sign Out
+              <i class="fas fa-user-times"></i>Sign Out
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{% url 'profile'%}" class="nav-link waves-effect" target="_blank">
-              <i class="fas fa-sign-out"></i>Profile
-            </a>
-          </li>
-          
           
         </ul>
+
+        <form  action="{%url 'search'%}" role="search" class="form-inline  my-2 my-lg-0">
+          <div style="text-align: right;">
+        <input id="searchUp" class="form-control mr-sm-2" name="business" type="search" placeholder="Search" aria-label="Search">
+      <button class=" btn btn-info">search</button> 
+      </div>
+      </form>	
 
       </div>
 
