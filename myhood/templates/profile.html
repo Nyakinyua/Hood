@@ -6,15 +6,15 @@
 
 
 
-<div class="container prof" style="margin-bottom: 4em;">
+<div class="container prof" style="padding-top:5em">
     <br><br>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-4" style="margin-bottom: 4em;">
-                    {%for i in person%}
-                    <img class="img-fluid" src="{{i.pic.cdn_url}}" alt="profile" style=" border-radius: 50%;">
+                <div class="col-md-4">
+                    {%for i in profile%}
+                    <img class="img-fluid rounded-circle" src="{{i.pic.cdn_url}}" alt="profile">
                     {%endfor%}
                 </div>
                 <div class="col-md-8">
@@ -26,7 +26,7 @@
 
                     </div>
 
-                    {%for i in person%}
+                    {%for i in profile%}
                     <strong>User:{{user|upper}}</strong>
                     <p><strong>BIO:</strong>{{i.bio}}</p>
                     <p><strong>Location:</strong>{{i.location}}</p>
@@ -48,28 +48,30 @@
         <div class="col-md-4"></div>
         <div class="col-md-8"></div>
 
-            <div class="row">
-                <div class="col-md-2"></div>
-                {%if post%}
-                {%for item in post %}
-                <div class="col-md-8">
-                    <div class="image">
-                        <a href=""><img class="img-fluid" src="{{item.image.cdn_url}}"
-                                alt=""></a>
+        <div class="row">
+            {% for post in post %}
+            <div class=col-md-4>
+                <div class="card" style="margin-bottom: 5em;">
+                    <div class="card-title">
+                        <h3>{{post.title}}</h3>
                     </div>
-                
-
-                {%endfor%}
-                {%else%}
-                <div class="alert">
-                    <p class="animated fadeIn alert alert-danger">You have not posted anything in the Neighborhood <br>
-                        <a href="{% url 'post'%}">Get started</a></p>
-
+                        <img class="img-fluid" src="{{post.image.cdn_url}}" alt="">
+    
+    
+    
+                    <div class="card-body">
+                        <p>{{post.description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p>Location {{post.where}}</p>
+                    </div>
+    
+    
                 </div>
-                {%endif%}
-
             </div>
-            <div class="col-md-2"></div>
+            {%endfor%}
+            <br><br>
+    
         </div>
         
 

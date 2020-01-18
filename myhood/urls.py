@@ -8,4 +8,7 @@ urlpatterns = [
     path('profile/',views.profile,name='profile'),
     path('edit/',views.update_profile,name="edit"),
     path('post/',views.add_post,name="post"),
+    path('search/',views.search_results,name="search"),
+    path('biz/',views.new_business,name="new_biz")
+    
 ]

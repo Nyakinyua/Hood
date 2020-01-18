@@ -3,7 +3,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="container"style="padding-top:5em">
+<div class="container">
   <div class="row">
     <div class="col-md-3">
     </div>
@@ -13,18 +13,18 @@
       {% endif %}
 
       <div class="card">
-        <div class="card-header"><h2><b><u>Add a new Post</u></b></h2></div>
+        <div class="card-header"><h2><b><u>Add a new Project</u></b></h2></div>
         <div class="card-body">
-          <form action="{% url 'post' %}" method="post" enctype="mulitpart/form-data">
+          <form action="{% url 'new_biz' %}" method="post" enctype="mulitpart/form-data">
             {% csrf_token %}
-            {% bootstrap_form post_form %}          
+            {% bootstrap_form form %}          
             <div class='form-group'>                     
               <hr>
               <input type="submit" class="btn btn-outline-info" value="Add">
             </div>
           </form>        
         </div>      
-      </div>   
+      </div>  
 
     </div>    
   </div>

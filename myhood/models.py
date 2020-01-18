@@ -14,15 +14,21 @@ class Neighborhood(models.Model):
     def __str__(self):
         return self.loc_name
     
+class department(models.Model):
+    
+    
 class Profile(models.Model):
     '''
     Class that creates instance of a new user
     '''
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    email = models.EmailField()
-    location = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
-    bio = models.CharField(max_length=500)
+    bio = models.CharField(max_length=1000)
     pic = ImageField(blank=True,manual_crop="")
+    contact = models.CharField(max_length=10,blank=True)
+    location = models.CharField(max_length=50,default=None,blank=True,null=True)
+    
+    
+    
     
     
     def __str__(self):
@@ -48,6 +54,13 @@ class Business(models.Model):
     def search_business(cls,search_term):
         business = cls.objects.filter(bs_name__icontains=search_term)
     
+    @classmethod
+    def get_businesses(cls,hood):
+        '''
+        function that searches for a businesses by hood
+        '''
+        biz=cls.objects.filter(hood__icontains=hood)
+        return biz
     
     
 class Posts(models.Model):
@@ -71,9 +84,18 @@ class Posts(models.Model):
         post = Post.objects.all().delete()
         return post
     
+    @classmethod
     def search_post(cls,search_term):
         post = cls.objects.filter(title__icontains=search_term)
     
+    @classmethod
+    def get_hood_posts(cls,hood):
+        posts = cls.objects.filter(where__icontains=hood)
+        return posts
     
+    @classmethod
+    def get_posts(cls):
+        all_posts = cls.objects.all()
+        return all_posts
 
 

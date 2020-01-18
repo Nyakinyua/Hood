@@ -20,5 +20,13 @@ class NewPostForm(forms.ModelForm):
         model = Posts
         exclude = ['posted_by']
         
+class NewBizForm(forms.ModelForm):
+    """
+    class that defines how the business form looks like
+    """
+    class Meta:
+        model = Business
+        exclude = ['owner']
+        
 
         
