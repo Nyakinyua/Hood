@@ -14,7 +14,42 @@ class Neighborhood(models.Model):
     def __str__(self):
         return self.loc_name
     
-class department(models.Model):
+    @classmethod
+    def create_hood(self):
+        self.save()
+        
+    
+    @classmethod
+    def findhood(cls,business_id):
+        found = cls.objects.get(id=neighborhood_id)
+        return found
+    
+    @classmethod
+    def delete_hood(self):
+        hoody = Neighborhood.objects.all().delete()
+        return hoody
+    
+class Department(models.Model):
+    
+    name = models.CharField(max_length=50)
+    depart_pic = ImageField(blank=True,manual_crop='')
+    description = models.TextField(max_length=200)
+    contact = models.CharField(max_length=10)
+    hood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name
+    
+    @classmethod
+    def get_dept(cls,loc):
+        depts = cls.objects.filter(hood__icontains=loc)
+        return depts
+    
+    @classmethod
+    def get_all_dept(cls):
+        all_depts = cls.objects.all()
+        return all_depts
+    
     
     
 class Profile(models.Model):
@@ -37,11 +72,16 @@ class Profile(models.Model):
     def save_profile(self):
         return self.save()
     
+    def get_residents(cls,location):
+        res = cls.objects.filter(location__icontains=location)
+        return res
+    
 class Business(models.Model):
     '''
     class that creates instance of a new business
     '''
     bs_name = models.CharField(max_length=300)
+    b_pic = ImageField(blank=True,manual_crop='')
     about = models.TextField(max_length=400,blank=True,default=None)
     owner=models.ForeignKey(User,on_delete=models.CASCADE)
     hood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
@@ -61,6 +101,13 @@ class Business(models.Model):
         '''
         biz=cls.objects.filter(hood__icontains=hood)
         return biz
+    
+    @classmethod
+    def get_all_biz(cls):
+        all_bs = cls.objects.all()
+        return all_bs
+    
+  
     
     
 class Posts(models.Model):
