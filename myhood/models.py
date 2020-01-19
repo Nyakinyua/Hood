@@ -72,6 +72,10 @@ class Profile(models.Model):
         res = cls.objects.filter(location__icontains=location)
         return res
     
+    def get_profiles(cls):
+        all_prof = cls.objects.all()
+        return all_prof
+    
 class Business(models.Model):
     '''
     class that creates instance of a new business
@@ -85,6 +89,9 @@ class Business(models.Model):
     
     def __str__(self):
         return self.bs_name
+    
+    def create_biz(self):
+        self.save()
     
     @classmethod
     def search_business(cls,search_term):
@@ -103,6 +110,15 @@ class Business(models.Model):
     def get_all_biz(cls):
         all_bs = cls.objects.all()
         return all_bs
+    
+    def get_biz(cls,id):
+        new_biz = cls.objects.get(id=business_id)
+        return new_biz
+    
+    def delete_biz(cls):
+        biznes = Business.objects.all().delete()
+        return biznes
+        
     
   
     
