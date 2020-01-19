@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>Hood</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
@@ -21,21 +21,22 @@
 
 <body class="grey lighten-3">
   <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar" style="background-color: #ddeeff;">
-    <div class="container">
+   
       <!-- side bar -->
       <div id="mySidenav" class="sidenav" style>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href='{% url "new_biz" %}'>New Business</a>
+        <a href="{%url 'post'%}">Post</a>
+        <a href="{% url 'edit'%}">Edit Profile</a>
+        <a href="{% url 'business'%}">All Businesses</a>
+        <a href="{%url 'hood'%}">Change Hood</a>
       </div>
       <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
       <!-- end sidebar -->
-
+      <div class="container">
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="blue-text">Neighborhood Watch</strong>
+      <a class="navbar-brand waves-effect" href="{% url 'home'%}" target="_blank">
+        <strong class="blue-text" style="font-weight: 900;font-size: 30px;font-family: 'Pacifico', cursive;">Hood Watch</strong>
       </a>
 
       <!-- Collapse -->
@@ -50,21 +51,16 @@
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link waves-effect" href="{% url 'home'%}">Home
+            <a class="nav-link waves-effect" href="{% url 'home'%}">
               <i class="fas fa-home"></i>
             </a>
           </li>
-          
+
         </ul>
-<!-- Right -->
+        <!-- Right -->
+
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{url 'post'}">
-              
-              <i class="fas fa-plus-square"></i>Post
-            </a>
-          </li>
-        
+
           <li class="nav-item">
             <a href="{% url 'profile'%}" class="nav-link waves-effect" target="_blank">
               <i class="fas fa-user"></i>Profile
@@ -75,15 +71,16 @@
               <i class="fas fa-user-times"></i>Sign Out
             </a>
           </li>
-          
+
         </ul>
 
-        <form  action="{%url 'search'%}" role="search" class="form-inline  my-2 my-lg-0">
+        <form action="{%url 'search'%}" role="search" class="form-inline  my-2 my-lg-0">
           <div style="text-align: right;">
-        <input id="searchUp" class="form-control mr-sm-2" name="business" type="search" placeholder="Search" aria-label="Search">
-      <button class=" btn btn-info">search</button> 
-      </div>
-      </form>	
+            <input id="searchUp" class="form-control mr-sm-2" name="business" type="search" placeholder="Search"
+              aria-label="Search">
+            <button class=" btn btn-info">search</button>
+          </div>
+        </form>
 
       </div>
 
@@ -108,7 +105,7 @@
     function closeNav() {
       document.getElementById("mySidenav").style.width = "0";
     }
-    
+
   </script>
 </body>
 
