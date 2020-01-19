@@ -28,5 +28,13 @@ class NewBizForm(forms.ModelForm):
         model = Business
         exclude = ['owner']
         
+class NewHoodForm(forms.ModelForm):
+    '''
+    class that allows user change neighborhood
+    '''
+    class Meta:
+        model = Neighborhood
+        fields = ('loc_name','location')
+        
 
         
