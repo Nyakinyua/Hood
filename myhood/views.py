@@ -7,11 +7,18 @@ from .forms import *
 
 
 # Create your views here.
-@login_required
+@login_required(login_url="/accounts/login/")
 def index(request):
-
-    message = "This is the message"
-    return render(request, 'index.html', {'message': message})
+    business = Business.get_all_biz()
+    depts = Department.get_all_dept()
+    posts = Posts.get_posts()
+    context = {
+        'business':business,
+        'depts':depts,
+        'posts':posts,
+        
+    }
+    return render(request,'index.html',context)
 
 
 @login_required(login_url="/accounts/login/")
@@ -109,3 +116,17 @@ def view_business(request):
 def departments(request):
     dept = Departments.get_dept(request.user.profile.location)
     return render(request,'hoods.html',{'dept':dept})
+
+@login_required
+def new_hood(request):
+    '''
+    function that allows users change their hood once they move
+    '''
+    if request.method == 'POST':
+        form = NewHoodForm(request.POST,request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            return redirect('profile')
+    else:
+        form = NewHoodForm()
+        return render(request,'hood.html',{'form':form})
