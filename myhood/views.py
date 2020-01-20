@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth import logout
 from .forms import *
+from django.contrib import messages
 
 
 # Create your views here.
@@ -130,3 +131,34 @@ def new_hood(request):
     else:
         form = NewHoodForm()
         return render(request,'hood.html',{'form':form})
+    
+@login_required()
+def user_dashboard(request):
+    """
+    function for displaying dashboard
+    """
+    return render(request, 'dashboard.html')
+
+@login_required()
+def registered_users(request):
+    users = User.objects.all()
+    context = {
+        'users': users
+    }
+    return render(request, 'users.html', context)
+
+@login_required()
+def user_deactivate(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user.is_active = False
+    user.save()
+    messages.success(request, "User account has been successfully deactivated!")
+    return redirect('system_users')
+
+@login_required()
+def user_activate(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user.is_active = True
+    user.save()
+    messages.success(request, "User account has been successfully activated!")
+    return redirect('system_users')
