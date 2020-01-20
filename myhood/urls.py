@@ -11,5 +11,9 @@ urlpatterns = [
     path('search/',views.search_results,name="search"),
     path('biz/',views.new_business,name="new_biz"),
     path('business/',views.view_business,name='business'),
-    path('hood/',views.new_hood,name='hood')
+    path('hood/',views.new_hood,name='hood'),
+    path('activate/user/<int:user_id>', views.user_activate, name='activate_user'),
+    path('deactivate/user/<int:user_id>', views.user_deactivate, name='deactivate_user'),
+    path('dashboard/', views.user_dashboard, name='user_dashboard'),
+    path('users/', views.registered_users, name='system_users'),
 ]

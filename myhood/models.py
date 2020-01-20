@@ -76,6 +76,10 @@ class Profile(models.Model):
         all_prof = cls.objects.all()
         return all_prof
     
+    def delete_profiles(cls):
+        del_prof = cls.objects.all().delete()
+        return del_prof
+    
 class Business(models.Model):
     '''
     class that creates instance of a new business

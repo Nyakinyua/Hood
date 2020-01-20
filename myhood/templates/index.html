@@ -17,7 +17,7 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100"
-        src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        src="https://images.pexels.com/photos/1097456/pexels-photo-1097456.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
         alt="Second slide" height="500px">
       <div class="carousel-caption d-none d-md-block" id="position">
         <h3 style="font-size: 50px;font-weight: 700" class="wow fadeInDown" data-wow-duration="5s" data-wow-delay="1s">Who's There?</h3>
@@ -26,7 +26,7 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100"
-        src="https://images.pexels.com/photos/2098624/pexels-photo-2098624.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        src="https://images.pexels.com/photos/1097456/pexels-photo-1097456.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
         alt="Third slide" height="500px" id="img">
       <div class="carousel-caption d-none d-md-block">
         <h3 class="wow jackInTheBox" data-wow-duration="1s" data-wow-delay="1s"
@@ -37,7 +37,7 @@
 </div>
 <!--Main layout-->
 <div class="container">
-
+<h1 text-align=center style="font-family: 'Pacifico', cursive;"><u>Discover Neighborhood</u></h1>
   <div class="row">
     {% for post in posts %}
     <div class=col-md-4>
@@ -76,7 +76,7 @@
 
 
     <!-- Heading -->
-    <h2 class="my-5 h2 text-center">Checkout Businesses</h2>
+  
 
     <!--Grid row-->
     <div class="row">
@@ -91,7 +91,7 @@
           <div class="card-title">
             <h3 class="text-center">{{bizna.bs_name}}</h3>
           </div>
-          <img class="img-fluid" src="{{business.b_pic}}" alt="biz">
+          <img class="img-fluid" src="{{bizna.b_pic.cdn_url}}" alt="biz">
           <div class="card-body">
             <p>Owned by: <span class="text-success">{{bizna.owner}}</span></p>
             <p><span class="text-primary">Description:</span> <br>{{bizna.about}}</p>
@@ -157,35 +157,35 @@
 
   <!-- Social icons -->
   <div class="pb-4">
-    <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+    <a href="https://www.facebook.com/" target="_blank">
       <i class="fab fa-facebook-f mr-3"></i>
     </a>
 
-    <a href="https://twitter.com/MDBootstrap" target="_blank">
+    <a href="https://twitter.com" target="_blank">
       <i class="fab fa-twitter mr-3"></i>
     </a>
 
-    <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+    <a href="" target="_blank">
       <i class="fab fa-youtube mr-3"></i>
     </a>
 
-    <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+    <a href="" target="_blank">
       <i class="fab fa-google-plus-g mr-3"></i>
     </a>
 
-    <a href="https://dribbble.com/mdbootstrap" target="_blank">
+    <a href="" target="_blank">
       <i class="fab fa-dribbble mr-3"></i>
     </a>
 
-    <a href="https://pinterest.com/mdbootstrap" target="_blank">
+    <a href="" target="_blank">
       <i class="fab fa-pinterest mr-3"></i>
     </a>
 
-    <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+    <a href="" target="_blank">
       <i class="fab fa-github mr-3"></i>
     </a>
 
-    <a href="http://codepen.io/mdbootstrap/" target="_blank">
+    <a href="" target="_blank">
       <i class="fab fa-codepen mr-3"></i>
     </a>
   </div>
@@ -194,7 +194,7 @@
   <!--Copyright-->
   <div class="footer-copyright py-3">
     © 2020 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> Neighbourslimited.com </a>
+    <a href="" target="_blank"> Hoodsltd.com </a>
   </div>
   <!--/.Copyright-->
 
