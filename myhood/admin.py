@@ -14,3 +14,4 @@ class ProfileAdmin(admin.ModelAdmin):
 admin.site.register(Neighborhood)
 admin.site.register(Business)
 admin.site.register(Department)
+admin.site.register(Posts)
