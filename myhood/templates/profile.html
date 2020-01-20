@@ -51,6 +51,7 @@
         <div class="col-md-8"></div>
 
         <div class="row">
+            {%if post %}
             {% for post in post %}
             <div class=col-md-4>
                 <div class="card" style="margin-bottom: 5em;">
@@ -72,6 +73,13 @@
                 </div>
             </div>
             {%endfor%}
+            {%else%}
+            <div class="alert">
+                <p class="animated fadeIn alert alert-danger">You have not posted anything <br>
+                <a href="{%url 'post'%}">Get started</a></p>
+      
+              </div>
+              {%endif%}
             <br><br>
     
         </div>
